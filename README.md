@@ -1,5 +1,6 @@
 # freelec-springboot2-webservice
 1. HelloControllerTest.java 오류 로그
+
 Testing started at 오전 2:16 ...
 Starting Gradle Daemon...
 Gradle Daemon started in 4 s 82 ms
