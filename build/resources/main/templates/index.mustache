@@ -12,7 +12,9 @@
                     <a href="/logout" class="btn btn-info active" role="button">Logout</a>
             {{/userName}}
                 {{^userName}}
-                    <a href="/oauth2/authorization/google" class="btn btn-success active" role="button">Google Login</a>
+                    <a href="/oauth2/authorization/google" class="btn btn-success active"
+                       id="btn-google"
+                       role="button">Google Login</a>
                 {{/userName}}
         </div>
     </div>
