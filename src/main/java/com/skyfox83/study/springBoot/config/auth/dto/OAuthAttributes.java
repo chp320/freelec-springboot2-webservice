@@ -47,22 +47,21 @@ public class OAuthAttributes {
 
     private static OAuthAttributes ofNaver(String userNameAttributeName,
                                            Map<String, Object> attributes) {
-//        Map<String, Object> response = (Map<String, Object>) attributes.get("response") ;
+        Map<String, Object> response = (Map<String, Object>) attributes.get("response") ;
 
         return OAuthAttributes.builder()
-//                .name((String) response.get("name"))
-//                .email((String) response.get("email"))
-//                .picture((String) response.get("profile_image"))
-//                .attributes(response)
-//                .nameAttributeKey(userNameAttributeName)
-//                .build() ;
-
-                .name((String) attributes.get("name"))
-                .email((String) attributes.get("email"))
-                .picture((String) attributes.get("profile_image"))
-                .attributes(attributes)
+                .name((String) response.get("name"))
+                .email((String) response.get("email"))
+                .picture((String) response.get("profile_image"))
+                .attributes(response)
                 .nameAttributeKey(userNameAttributeName)
                 .build() ;
+//                .name((String) attributes.get("name"))
+//                .email((String) attributes.get("email"))
+//                .picture((String) attributes.get("profile_image"))
+//                .attributes(attributes)
+//                .nameAttributeKey(userNameAttributeName)
+//                .build() ;
     }
 
     public User toEntity() {
