@@ -2,7 +2,9 @@ version: 0.0
 os: linux
 files:
   - source: /
-    destination: /home/ec2-user/app/step2/zip/
+    #무중단배포 스크립트 작성을 위한 배포 경로 변경 (step2 -> step3)
+    #destination: /home/ec2-user/app/step2/zip/
+    destination: /home/ec2-user/app/step3/zip/
     overwrite: yes
 
 permissions:
@@ -12,7 +14,20 @@ permissions:
     group: ec2-user
 
 hooks:
-  ApplicationsStart:
-    - location: deploy.sh
+#  ApplicationsStart:
+#    - location: deploy.sh
+#      timeout: 60
+#      runas: ec2-user
+#  stop.sh, start.sh, health.sh 을 사용하도록 설정
+  AfterInstall:
+    - location: stop.sh # 엔진엑스와 연결되어 있지 않은 스프링 부트를 종료합니다.
+      timeout: 60
+      runas: ec2-user
+  ApplicationStart:
+    - location: start.sh  # 엔진엑스와 연결되어 있지 않은 port로 새 버전의 스프링 부트를 시작합니다.
+      timeout: 60
+      runas: ec2-user
+  ValidateService:
+    - location: health.sh # 새 스프링 부트가 정상적으로 실행됐는지 확인합니다.
       timeout: 60
       runas: ec2-user
